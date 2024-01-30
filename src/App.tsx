@@ -33,6 +33,17 @@ function App() {
     setTaskToUpdate(task);
   };
 
+  const updateTask = (id: number, title: string, difficulty: number): void => {
+    const updatedTask: ITask = { id, title, difficulty };
+
+    const updateTaskList = taskList.map((task) => {
+      return task.id === id ? updatedTask : task;
+    });
+
+    setTaskList(updateTaskList);
+    hideOrShowModal(false);
+  };
+
   return (
     <div>
       <Modal
@@ -41,6 +52,7 @@ function App() {
             btnText="Editar tarefa"
             taskList={taskList}
             task={taskToUpdate}
+            handleUpdate={updateTask}
           />
         }
       />
